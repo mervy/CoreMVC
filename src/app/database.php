@@ -10,7 +10,7 @@ return [
     ],
     'mysql' => [
         'host' => 'localhost',
-        'database' => 'coremvc_2',
+        'database' => 'coremvc',
         'user' => 'root',
         'pass' => '',
         'charset' => 'utf8',
