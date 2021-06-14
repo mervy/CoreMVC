@@ -31,13 +31,17 @@ class Route {
 
     private function getRequest() {
         $obj = new \stdClass();
+        
+        //As atribuições abaixo eliminam o erro de campos nulos!
+        $obj->get = new \stdClass();
+        $obj->post = new \stdClass();
 
         foreach ($_GET as $key => $value) {
-            @$obj->get->$key = $value;
+            $obj->get->$key = $value;
         }
 
         foreach ($_POST as $key => $value) {
-            @$obj->post->$key = $value;
+            $obj->post->$key = $value;
         }
         return $obj;
     }

@@ -12,10 +12,10 @@
 DROP TABLE IF EXISTS `articles`;
 CREATE TABLE IF NOT EXISTS `articles` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `title` varchar(128) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `image` varchar(128) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `content` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `status` char(3) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT 'not' COMMENT 'yes or not',
+  `title` varchar(128) NOT NULL,
+  `image` varchar(128) NOT NULL,
+  `content` text NOT NULL,
+  `status` char(3) NOT NULL DEFAULT 'not' COMMENT 'yes or not',
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
   `authors_id` int NOT NULL,
@@ -32,11 +32,11 @@ CREATE TABLE IF NOT EXISTS `articles` (
 DROP TABLE IF EXISTS `authors`;
 CREATE TABLE IF NOT EXISTS `authors` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nickname` varchar(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `name` varchar(128) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(64) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(60) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `status` char(3) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT 'yes' COMMENT 'yes or not',
+  `nickname` varchar(32) NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `email` varchar(64) NOT NULL,
+  `password` varchar(60) NOT NULL,
+  `status` char(3) NOT NULL DEFAULT 'yes' COMMENT 'yes or not',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `nickname` (`nickname`)
@@ -58,9 +58,9 @@ INSERT INTO `authors` (`id`, `nickname`, `name`, `email`, `password`, `status`) 
 DROP TABLE IF EXISTS `categories`;
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(128) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `slug` varchar(128) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `description` varchar(512) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `slug` varchar(128) NOT NULL,
+  `description` varchar(512) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -74,9 +74,9 @@ CREATE TABLE IF NOT EXISTS `categories` (
 DROP TABLE IF EXISTS `newsletters`;
 CREATE TABLE IF NOT EXISTS `newsletters` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(128) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(64) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `ip` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `email` varchar(64) NOT NULL,
+  `ip` varchar(15) NOT NULL,
   `registered_in` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
