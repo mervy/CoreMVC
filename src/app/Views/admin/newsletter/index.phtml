@@ -1,0 +1,74 @@
+<?php $this->renderView('menus/_admin_page');?>
+<div class="container">
+    <div class="page-header">
+        <h2 class="card-title py-3">Newsletter</h2>
+    </div>
+
+    <?php if (!empty($this->view->news)): ?>
+    <table id="myTable" class="table table-striped custab sortable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>E-mail</th>
+                <th>IP</th>
+                <th>Registered in</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($this->view->news as $n): ?>
+            <tr>
+                <td><?= $n['id'] ?></td>
+                <td><?= $n['name'] ?></td>
+                <td><?= $n['email'] ?></td>
+                <td><?= $n['ip'] ?></td>
+                <td><?= $n['registered_in'] ?></td>
+                <td class="text-center">
+                    <a href="/admin/delete/newsletter/<?= $n['id'] ?>" class="btn btn-danger btn-xs" onclick="confirm('Tem certeza que quer excluir?')"><span class="glyphicon glyphicon-remove"></span> Del</a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    <?php else: ?>
+    <p>Não houve inscrições até agora!!</p>
+    <?php endif; ?>
+
+    <!-- Start pagination-->
+    <?php if ($this->view->contar > 1): ?>
+    <?php
+    $pAtual = $this->view->atual;
+    $pTotal = $this->view->contar;
+    $pMax = 2;
+    $pUrl = "/admin/show/newsletter?page=";
+    ?>
+    <ul class="pagination justify-content-center mt-3">
+        <li class="page-item">
+            <a class="page-link" href="<?= $pUrl ?>1"><i class="fa fa-step-backward"></i></a>
+        </li>
+        <?php for ($pBefore = $pAtual - $pMax; $pBefore <= $pAtual - 1; $pBefore++): ?>
+        <?php if ($pBefore >= 1): ?>
+        <li class="page-item">
+            <a class="page-link" href="<?= $pUrl . $pBefore ?>"><?= $pBefore ?></a>
+        </li>
+        <?php endif; ?>
+        <?php endfor; ?>
+        <li class="page-item active">
+            <a class="page-link" href="#"><?= $pAtual ?></a>
+        </li>
+        <?php for ($pAfter = $pAtual + 1; $pAfter <= $pAtual + $pMax; $pAfter++): ?>
+        <?php if ($pAfter <= $pTotal): ?>
+        <li class="page-item">
+            <a class="page-link" href="<?= $pUrl . $pAfter ?>"><?= $pAfter ?></a>
+        </li>
+        <?php endif; ?>
+        <?php endfor; ?>
+        <li class="page-item">
+            <a class="page-link" href="<?= $pUrl . $pTotal ?>"><i class="fa fa-step-forward"></i></a>
+        </li>
+
+    </ul>
+    <?php endif; ?>
+    <!-- End pagination -->
+</div>

@@ -1,0 +1,5 @@
+/vendor/
+/public/assets/logs/
+coremvc_1_bkp.sql
+articles.7z
+composer.lock
